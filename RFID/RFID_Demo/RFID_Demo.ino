@@ -20,11 +20,16 @@
   
 */
 
+/*
+ * 
+ * 
+ */
+
 // include the SoftwareSerial library so we can use it to talk to the RFID Reader
 #include <SoftwareSerial.h>
 
-#define enablePin  9   // Connects to the RFID's ENABLE pin
-#define rxPin      10  // Serial input (connects to the RFID's SOUT pin)
+#define enablePin  2  // Connects to the RFID's ENABLE pin
+#define rxPin      0  // Serial input (connects to the RFID's SOUT pin)
 #define txPin      11  // Serial output (unused)
 
 #define BUFSIZE    11  // Size of receive buffer (in bytes) (10-byte unique ID + null character)
@@ -46,7 +51,7 @@ void setup()  // Set up code called once on start-up
   // setup Arduino Serial Monitor
   Serial.begin(9600);
   while (!Serial);   // wait until ready
-  Serial.println("\n\nParallax RFID Card Reader");
+  Serial.println("\n\nParallax RFID Card Reader"); // this occurs within software and it's going to be a good time 
   
   // set the baud rate for the SoftwareSerial port
   rfidSerial.begin(2400);
@@ -68,7 +73,7 @@ void loop()  // Main code, to run repeatedly
   */   
   
   digitalWrite(enablePin, LOW);   // enable the RFID Reader
-  
+  Serial.println("RFID time"); 
   // Wait for a response from the RFID Reader
   // See Arduino readBytesUntil() as an alternative solution to read data from the reader
   char rfidData[BUFSIZE];  // Buffer for incoming data

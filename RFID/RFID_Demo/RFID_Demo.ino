@@ -28,8 +28,8 @@
 // include the SoftwareSerial library so we can use it to talk to the RFID Reader
 #include <SoftwareSerial.h>
 
-#define enablePin  2  // Connects to the RFID's ENABLE pin
-#define rxPin      1  // Serial input (connects to the RFID's SOUT pin)
+#define enablePin  11  // Connects to the RFID's ENABLE pin
+#define rxPin      10  // Serial input (connects to the RFID's SOUT pin)
 #define txPin      11  // Serial output (unused)
 
 #define BUFSIZE    11  // Size of receive buffer (in bytes) (10-byte unique ID + null character)

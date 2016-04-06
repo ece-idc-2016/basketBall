@@ -37,6 +37,11 @@
 #define RFID_START  0x0A  // RFID Reader Start and Stop bytes
 #define RFID_STOP   0x0D
 
+#include <Servo.h>                           // Use the Servo library (included with Arduino IDE)  
+#include <SoftwareSerial.h>
+Servo servoL;                                // Define the left and right servos
+Servo servoR;
+
 // set up a new serial port
 SoftwareSerial rfidSerial =  SoftwareSerial(rxPin, txPin);
 
@@ -57,6 +62,14 @@ void setup()  // Set up code called once on start-up
   rfidSerial.begin(2400);
 
   Serial.flush();   // wait for all bytes to be transmitted to the Serial Monitor
+    servoL.attach(13);                         // Attach (programmatically connect) servos to pins on Arduino
+  servoR.attach(12);
+    Serial.println("RFID time"); 
+  // Wait for a response from the RFID Reader
+  // See Arduino readBytesUntil() as an alternative solution to read data from the reader
+  char rfidData[BUFSIZE];  // Buffer for incoming data
+  char offset = 0;         // Offset into buffer
+  rfidData[0] = 0;         // Clear the buffer
 }
 
 void loop()  // Main code, to run repeatedly
@@ -71,18 +84,23 @@ void loop()  // Main code, to run repeatedly
     
     We'll receive the ID and convert it to a null-terminated string with no start or stop byte. 
   */   
+
   
   digitalWrite(enablePin, LOW);   // enable the RFID Reader
-  Serial.println("RFID time"); 
-  // Wait for a response from the RFID Reader
-  // See Arduino readBytesUntil() as an alternative solution to read data from the reader
-  char rfidData[BUFSIZE];  // Buffer for incoming data
-  char offset = 0;         // Offset into buffer
-  rfidData[0] = 0;         // Clear the buffer    
+
+  /*
   while(1)
   {
+
+     servoL.writeMicroseconds(1700);      // Steer robot to recenter it over the line
+       servoR.writeMicroseconds(1300); 
+       delay(100);
+       servoL.writeMicroseconds(1500);      // Steer robot to recenter it over the line
+       servoR.writeMicroseconds(1500);
+       delay(25);
      // rfidData[offset] = rfidSerial.read(); 
     
+   
     if (rfidSerial.available() > 0) // If there are any bytes available to read, then the RFID Reader has probably seen a valid tag
     {
       rfidData[offset] = rfidSerial.read();  // Get the byte and store it in our buffer
@@ -104,6 +122,25 @@ void loop()  // Main code, to run repeatedly
   Serial.println(rfidData);       // The rfidData string should now contain the tag's unique ID with a null termination, so display it on the Serial Monitor
   Serial.flush();                 // Wait for all bytes to be transmitted to the Serial Monitor
 }
-
+*/
+if (rfidSerial.available() > 0)
+     // rfidData[offset] = rfidSerial.read();  // Get the byte and store it in our buffer
+      // if (rfidData[offset] == RFID_START)    // If we receive the start byte from the RFID Reader, then get ready to receive the tag's unique ID
+      {
+        //other stuff. 
+        servoL.writeMicroseconds(1500);      // Steer robot to recenter it over the line
+       servoR.writeMicroseconds(1500);
+       delay(5000);
+      }
+     
+     {
+       servoL.writeMicroseconds(1700);      // Steer robot to recenter it over the line
+       servoR.writeMicroseconds(1300); 
+       delay(100);
+       servoL.writeMicroseconds(1500);      // Steer robot to recenter it over the line
+       servoR.writeMicroseconds(1500);
+       delay(25);
+     }
+}
 
 

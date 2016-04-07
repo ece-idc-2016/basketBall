@@ -17,11 +17,9 @@
  *      far left: 7
  *   ## XBEE: 
  *       din: 8 
- *       dout: 2 
+ *       dout: 9  
  *  ## LEDs: 
  *     A1, A2
- *   ## LCD
- *  
  * 
  * 
  */
@@ -75,8 +73,8 @@ void setup()
   servoR.attach(12);
   pinMode(enablePin, OUTPUT);
   pinMode(rxPin, INPUT);
-  // pinMode(led1,OUTPUT);
-  // pinMode(led2,OUTPUT);
+  pinMode(led1,OUTPUT);
+  pinMode(led2,OUTPUT);
   digitalWrite(enablePin, HIGH);  // disable RFID Reader
 
   // setup Arduino Serial Monitor
@@ -309,7 +307,6 @@ while(k<5){ // run a few test cases to make sure we're getting solid values
       pinMode(pingPin, INPUT);
       duration = pulseIn(pingPin, HIGH);
       k+=1;
-      delay(100); // maybe we need this delay?
 }
 k=0;
    
@@ -325,12 +322,13 @@ k=0;
       duration = pulseIn(pingPin, HIGH);
       // convert the time into a distance
       cm = microsecondsToCentimeters(duration);
+      break;
       Serial.print(cm);
       Serial.print("cm");
       Serial.println();
          servoL.writeMicroseconds(1300);      // turn...
       servoR.writeMicroseconds(1300);
-      delay(100);
+      delay(10);
      // keep turning 
       }
 
@@ -388,42 +386,38 @@ k=0;
       // convert the time into a distance
       cm = microsecondsToCentimeters(duration);
       Serial.println("cm");
+      break;
       Serial.print(cm);
       Serial.print("cm");
       Serial.println();
       Serial.println("We just took a measurement.");
-      delay(100);
       k+=1;
      }
-      Serial.println("LED TIME");
+
       // communicate what we've found 
       if (cm > 30) // if 3-pointer... 
      {
          ledVal=0; // return 0 
          // do something 
-          analogWrite(A0,255);
+          analogWrite(pin1,255);
       }
       else if (cm >= 20 && cm <= 30) // if a two-pointer...
       {
        ledVal=1; // return 1
        // do something 
-       analogWrite(A1,255);
+       analogWrite(pin2,255);
       }
       else if(cm < 20)
       {
         ledVal=2;
         // do something 
-           analogWrite(A1,255);
-           analogWrite(A0,255);
+           analogWrite(pin2,255);
+           analogWrite(pin1,255);
         
       }
 
-      
-Serial.println("the end");
-delay(50000000); // our program effectively ends becaus
-break; 
 
-// the end of our case here. (not entirely sure this is the cleanest way to do this...)
+break; // the end of our case here. (not entirely sure this is the cleanest way to do this...)
 
         case 0000:
             vL = 0;

@@ -36,14 +36,19 @@
 #include <SoftwareSerial.h>
 Servo servoL;                                // Define the left and right servos
 Servo servoR;
-
-int pingPin = 2; // this needs to be something other than 7.
+const int TxPin = 9;
+SoftwareSerial mySerial = SoftwareSerial(255, TxPin);
+int pingPin = 2; 
+// XBEE
+#define Rx 2 // DOUT to pin 10
+#define Tx 8 // DIN to pin 11
+SoftwareSerial Xbee (Rx, Tx);
 int farLP = 7;
 // int button=9;
 int centerLP = 6;
 int centerRP = 5;
 int farRP = 4;
-int ledVal=0;
+char ledVal=' ';
 int k=0;
 long duration, inches, cm;
 int g1 = 75; // worked at 25.
@@ -73,6 +78,9 @@ void setup()
   Serial.begin(9600);                        // Set up Arduino Serial Monitor at 9600 baud
   servoL.attach(13);                         // Attach (programmatically connect) servos to pins on Arduino
   servoR.attach(12);
+   pinMode(TxPin, OUTPUT);
+  digitalWrite(TxPin, HIGH);
+  mySerial.begin(9600);
   pinMode(enablePin, OUTPUT);
   pinMode(rxPin, INPUT);
   // pinMode(led1,OUTPUT);
@@ -399,28 +407,68 @@ k=0;
       // communicate what we've found 
       if (cm > 30) // if 3-pointer... 
      {
-         ledVal=0; // return 0 
+         ledVal='a'; // return 0 
          // do something 
-          analogWrite(A0,255);
+          analogWrite(A0,255); // OR DON'T
+           mySerial.write(12);                 // Clear    
+          mySerial.write(17);                 // Turn backlight on
+          delay(5);                           // Require  d delay
+          mySerial.print("GOOOOOOLLD");  // First line    
       }
       else if (cm >= 20 && cm <= 30) // if a two-pointer...
       {
-       ledVal=1; // return 1
+       ledVal='b'; // return 1
        // do something 
-       analogWrite(A1,255);
+       // analogWrite(A1,255); // OR DON'T 
+        mySerial.write(12);                 // Clear    
+          mySerial.write(17);                 // Turn backlight on
+          delay(5);                           // Require  d delay
+          mySerial.print("SILVER");  // First line    
       }
       else if(cm < 20)
       {
-        ledVal=2;
+        ledVal='c';
         // do something 
-           analogWrite(A1,255);
-           analogWrite(A0,255);
+           // analogWrite(A1,255);
+           // analogWrite(A0,255);
+            mySerial.write(12);                 // Clear    
+          mySerial.write(17);                 // Turn backlight on
+          delay(5);                           // Require  d delay
+          mySerial.print("...bronze.");  // First line    
         
       }
 
+// communications time 
+ // char outgoing = 's'; // sets outgoing character to s
+ k=0;
+    while(k<5){
+    Xbee.print(ledVal);
+    delay(500);
+    k+=1;
+    }
+ // wait for a bit 
+
+ delay(10000); // wait ten seconds or so
+
+ if(Xbee.available()) { // Is data a vailable from XBee?
+    char incoming = Xbee.read(); // Read character,
+    // Serial.println(incoming); // send to Serial Monitor
+mySerial.write(12);; // clear 
+    mySerial.write(17);
+    delay(5);
+    mySerial.print(incoming); // print whatever we've got 
+}
+
+
+
+
+
       
 Serial.println("the end");
-delay(50000000); // our program effectively ends becaus
+mySerial.write(12);                 // Clear    
+delay(50000000); // our program effectively ends because time 
+
+
 break; 
 
 // the end of our case here. (not entirely sure this is the cleanest way to do this...)

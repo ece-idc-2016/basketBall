@@ -12,7 +12,7 @@ void setup() {
   delay(100);
   mySerial.write(12);                 // Clear             
   mySerial.write(17);                 // Turn backlight on
-  delay(5);                           // Required delay
+  delay(5);                           // Require  d delay
   mySerial.print("Hello, world...");  // First line
   mySerial.write(13);                 // Form feed
   mySerial.print("from Parallax!");   // Second line

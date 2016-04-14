@@ -1,4 +1,4 @@
-const int TxPin = 9;
+const int TxPin = 8;
 
 #include <SoftwareSerial.h>
 SoftwareSerial mySerial = SoftwareSerial(255, TxPin);
@@ -24,4 +24,6 @@ void setup() {
 }
 
 void loop() {
+
+  
 }

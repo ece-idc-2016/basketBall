@@ -1,0 +1,739 @@
+// song
+#define NOTE_B0  31
+#define NOTE_C1  33
+#define NOTE_CS1 35
+#define NOTE_D1  37
+#define NOTE_DS1 39
+#define NOTE_E1  41
+#define NOTE_F1  44
+#define NOTE_FS1 46
+#define NOTE_G1  49
+#define NOTE_GS1 52
+#define NOTE_A1  55
+#define NOTE_AS1 58
+#define NOTE_B1  62
+#define NOTE_C2  65
+#define NOTE_CS2 69
+#define NOTE_D2  73
+#define NOTE_DS2 78
+#define NOTE_E2  82
+#define NOTE_F2  87
+#define NOTE_FS2 93
+#define NOTE_G2  98
+#define NOTE_GS2 104
+#define NOTE_A2  110
+#define NOTE_AS2 117
+#define NOTE_B2  123
+#define NOTE_C3  131
+#define NOTE_CS3 139
+#define NOTE_D3  147
+#define NOTE_DS3 156
+#define NOTE_E3  165
+#define NOTE_F3  175
+#define NOTE_FS3 185
+#define NOTE_G3  196
+#define NOTE_GS3 208
+#define NOTE_A3  220
+#define NOTE_AS3 233
+#define NOTE_B3  247
+#define NOTE_C4  262
+#define NOTE_CS4 277
+#define NOTE_D4  294
+#define NOTE_DS4 311
+#define NOTE_E4  330
+#define NOTE_F4  349
+#define NOTE_FS4 370
+#define NOTE_G4  392
+#define NOTE_GS4 415
+#define NOTE_A4  440
+#define NOTE_AS4 466
+#define NOTE_B4  494
+#define NOTE_C5  523
+#define NOTE_CS5 554
+#define NOTE_D5  587
+#define NOTE_DS5 622
+#define NOTE_E5  659
+#define NOTE_F5  698
+#define NOTE_FS5 740
+#define NOTE_G5  784
+#define NOTE_GS5 831
+#define NOTE_A5  880
+#define NOTE_AS5 932
+#define NOTE_B5  988
+#define NOTE_C6  1047
+#define NOTE_CS6 1109
+#define NOTE_D6  1175
+#define NOTE_DS6 1245
+#define NOTE_E6  1319
+#define NOTE_F6  1397
+#define NOTE_FS6 1480
+#define NOTE_G6  1568
+#define NOTE_GS6 1661
+#define NOTE_A6  1760
+#define NOTE_AS6 1865
+#define NOTE_B6  1976
+#define NOTE_C7  2093
+#define NOTE_CS7 2217
+#define NOTE_D7  2349
+#define NOTE_DS7 2489
+#define NOTE_E7  2637
+#define NOTE_F7  2794
+#define NOTE_FS7 2960
+#define NOTE_G7  3136
+#define NOTE_GS7 3322
+#define NOTE_A7  3520
+#define NOTE_AS7 3729
+#define NOTE_B7  3951
+#define NOTE_C8  4186
+#define NOTE_CS8 4435
+#define NOTE_D8  4699
+#define NOTE_DS8 4978
+ 
+#define melodyPin 47
+//Mario main theme melody
+int melody[] = {
+  NOTE_E7, NOTE_E7, 0, NOTE_E7,
+  0, NOTE_C7, NOTE_E7, 0,
+  NOTE_G7, 0, 0,  0,
+  NOTE_G6, 0, 0, 0,
+ 
+  NOTE_C7, 0, 0, NOTE_G6,
+  0, 0, NOTE_E6, 0,
+  0, NOTE_A6, 0, NOTE_B6,
+  0, NOTE_AS6, NOTE_A6, 0,
+ 
+  NOTE_G6, NOTE_E7, NOTE_G7,
+  NOTE_A7, 0, NOTE_F7, NOTE_G7,
+  0, NOTE_E7, 0, NOTE_C7,
+  NOTE_D7, NOTE_B6, 0, 0,
+ 
+  NOTE_C7, 0, 0, NOTE_G6,
+  0, 0, NOTE_E6, 0,
+  0, NOTE_A6, 0, NOTE_B6,
+  0, NOTE_AS6, NOTE_A6, 0,
+ 
+  NOTE_G6, NOTE_E7, NOTE_G7,
+  NOTE_A7, 0, NOTE_F7, NOTE_G7,
+  0, NOTE_E7, 0, NOTE_C7,
+  NOTE_D7, NOTE_B6, 0, 0
+};
+//Mario main them tempo
+int tempo[] = {
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+ 
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+ 
+  9, 9, 9,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+ 
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+ 
+  9, 9, 9,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+  12, 12, 12, 12,
+};
+//Underworld melody
+int underworld_melody[] = {
+  NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,
+  NOTE_AS3, NOTE_AS4, 0,
+  0,
+  NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,
+  NOTE_AS3, NOTE_AS4, 0,
+  0,
+  NOTE_F3, NOTE_F4, NOTE_D3, NOTE_D4,
+  NOTE_DS3, NOTE_DS4, 0,
+  0,
+  NOTE_F3, NOTE_F4, NOTE_D3, NOTE_D4,
+  NOTE_DS3, NOTE_DS4, 0,
+  0, NOTE_DS4, NOTE_CS4, NOTE_D4,
+  NOTE_CS4, NOTE_DS4,
+  NOTE_DS4, NOTE_GS3,
+  NOTE_G3, NOTE_CS4,
+  NOTE_C4, NOTE_FS4, NOTE_F4, NOTE_E3, NOTE_AS4, NOTE_A4,
+  NOTE_GS4, NOTE_DS4, NOTE_B3,
+  NOTE_AS3, NOTE_A3, NOTE_GS3,
+  0, 0, 0
+};
+//Underwolrd tempo
+int underworld_tempo[] = {
+  12, 12, 12, 12,
+  12, 12, 6,
+  3,
+  12, 12, 12, 12,
+  12, 12, 6,
+  3,
+  12, 12, 12, 12,
+  12, 12, 6,
+  3,
+  12, 12, 12, 12,
+  12, 12, 6,
+  6, 18, 18, 18,
+  6, 6,
+  6, 6,
+  6, 6,
+  18, 18, 18, 18, 18, 18,
+  10, 10, 10,
+  10, 10, 10,
+  3, 3, 3
+};
+
+// libraries 
+#include <Servo.h>                           
+#include <SoftwareSerial.h>
+Servo servoL;                                
+Servo servoR;
+
+// LCD
+const int TxPin = 9; // this is for the LCD
+SoftwareSerial mySerial = SoftwareSerial(255, TxPin);
+
+// Ultrasonic and Pizo
+int pingPin = 2; 
+long duration, inches, cm;
+int speakerOut = 3;
+short distance=25; 
+
+// Xbee
+#define Rx 51 
+#define Tx 53 
+SoftwareSerial Xbee (Rx, Tx);
+
+// Line Following 
+int farLP = 7;
+int centerLP = 6;
+int centerRP = 5;
+int farRP = 4;
+int g1 = 75; // worked at 25.
+
+// LED
+char ledVal=' ';
+int k=0;
+int ledfl = 41;
+int ledml = 39;
+int ledmr = 37;
+int ledfr = 35;
+
+ 
+// code for RFID:
+#define enablePin  11  // Connects to the RFID's ENABLE pin
+#define rxPin      10  // Serial input (connects to the RFID's SOUT pin)
+#define txPin      11  // Serial output (unused)
+int rfidYes = 0; // "do we have RFID?" ---> NO
+#define BUFSIZE    11  // Size of receive buffer (in bytes) (10-byte unique ID + null character)
+#define RFID_START  0x0A  // RFID Reader Start and Stop bytes
+#define RFID_STOP   0x0D
+SoftwareSerial rfidSerial =  SoftwareSerial(rxPin, txPin);
+char rfidData[BUFSIZE];  // Buffer for incoming data
+char offset = 0;         // Offset into buffer
+
+
+
+void setup()
+{
+
+  // Begin Serial Monitor and Attatch Servos
+  Serial.begin(9600); 
+  servoL.attach(13);                         
+  servoR.attach(12);
+
+  // Setup LCD monitor 
+  pinMode(TxPin, OUTPUT);
+  digitalWrite(TxPin, HIGH);
+  mySerial.begin(9600);
+
+  // RFID Sensor
+  pinMode(enablePin, OUTPUT);
+  pinMode(rxPin, INPUT);
+  digitalWrite(enablePin, HIGH);  // disable RFID Reader
+  while (!Serial);   // wait until ready
+  Serial.println("\n\nParallax RFID Card Reader"); 
+
+  // set the baud rate for the SoftwareSerial port
+  rfidSerial.begin(2400);
+  Serial.flush(); 
+
+  // Setup LEDs and Speaker
+  pinMode(speakerOut, OUTPUT);
+  pinMode(ledfl, OUTPUT);
+  pinMode(ledml, OUTPUT);
+  pinMode(ledmr, OUTPUT);
+  pinMode(ledfr, OUTPUT);
+
+  // clear RFID buffer
+  char rfidData[BUFSIZE];  // Buffer for incoming data
+  char offset = 0;         // Offset into buffer
+  rfidData[0] = 0;
+
+  // Set QTIs as outputs 
+  pinMode(farLP, OUTPUT); 
+  pinMode(centerLP, OUTPUT);
+  pinMode(centerRP, OUTPUT);
+  pinMode(farRP, OUTPUT);
+
+  // Allow capacitor to charge in QTI
+  digitalWrite(farLP, HIGH); 
+  digitalWrite(centerLP, HIGH);
+  digitalWrite(centerRP, HIGH);
+  digitalWrite(farRP, HIGH);
+  delayMicroseconds(230); 
+
+  // Set QTIs as inputs
+  pinMode(farLP, INPUT); 
+  pinMode(centerLP, INPUT);
+  pinMode(centerRP, INPUT); 
+  pinMode(farRP, INPUT);
+
+  // Set QTIs to Low for now 
+  digitalWrite(farLP, LOW);
+  digitalWrite(centerLP, LOW);
+  digitalWrite(centerRP, LOW);
+  digitalWrite(farRP, LOW);
+  delayMicroseconds(230);
+
+
+  int pin4 = isHighfR(RCTime(farRP));
+  int pin1 = isHighCR(RCTime(centerRP));
+  int pin2 = isHighCL(RCTime(centerLP));
+  int pin3 = isHighfL(RCTime(farLP));
+  String s = String(pin3) + String(pin2) + String(pin1) + String(pin4);
+  int pins = s.toInt();
+
+
+}
+
+  // RCTime for QTIs
+long RCTime(int sensorIn) {
+  long duration = 0;
+  pinMode(sensorIn, OUTPUT);     // Make pin OUTPUT
+  digitalWrite(sensorIn, HIGH);  // Pin HIGH (discharge capacitor)
+  delay(1);                      // Wait 1ms
+  pinMode(sensorIn, INPUT);      // Make pin INPUT
+  digitalWrite(sensorIn, LOW);   // Turn off internal pullups
+  while (digitalRead(sensorIn)) { // Wait for pin to go LOW
+    duration++;
+  }
+  return duration;
+}
+
+  // Cutoff High value for each QTI
+int isHighfR(int rctime) {
+  if (rctime < 40) 
+    return 0;
+  else
+    return 1;
+}
+
+int isHighCR(int rctime) {
+  if (rctime < 20) 
+    return 0;
+  else
+    return 1;
+}
+
+int isHighCL(int rctime) {
+  if (rctime < 20) 
+    return 0;
+  else
+    return 1;
+}
+
+int isHighfL(int rctime) {
+  if (rctime < 40) 
+    return 0;
+  else
+    return 1;
+}
+
+
+void loop()
+{
+
+{
+
+  // Get QTIs ready 
+  pinMode(farLP, OUTPUT);
+  pinMode(centerLP, OUTPUT);
+  pinMode(centerRP, OUTPUT);
+  pinMode(farRP, OUTPUT);
+
+  digitalWrite(farLP, HIGH);
+  digitalWrite(centerLP, HIGH);
+  digitalWrite(centerRP, HIGH);
+  digitalWrite(farRP, HIGH);
+  delayMicroseconds(230); // allow capcitor charge in QTI
+
+  pinMode(farLP, INPUT);
+  pinMode(centerLP, INPUT);
+  pinMode(centerRP, INPUT);
+  pinMode(farRP, INPUT);
+
+  digitalWrite(farLP, LOW);
+  digitalWrite(centerLP, LOW);
+  digitalWrite(centerRP, LOW);
+  digitalWrite(farRP, LOW);
+
+  delayMicroseconds(230);
+
+
+  int pin4 = isHighfR(RCTime(farRP));
+  int pin1 = isHighCR(RCTime(centerRP));
+  int pin2 = isHighCL(RCTime(centerLP));
+  int pin3 = isHighfL(RCTime(farLP));
+  String s = String(pin3) + String(pin2) + String(pin1) + String(pin4);
+  int pins = s.toInt();
+
+  
+  int vL, vR;
+  int allBlack;
+
+
+  // Differenct cases for QTIs
+  switch (pins)                              
+  {
+    case 1000:
+      vL = -g1;                            
+      vR = g1;                              
+      break;
+    case 1100:
+      vL = 0; 
+      vR = 1.5 * g1; 
+      break;
+    case 0011:
+      vL = 1.5 * g1; 
+      vR = 0;
+      break;
+    case 101:
+      vL = -g1;
+      vR = -g1;
+      break;
+    case 1010:
+      vL = g1;
+      vR = g1;
+    case 100:
+      vL = -g1;
+      vR = g1;
+      break;
+    case 110:
+      vL = 100;
+      vR = 100;
+      break;
+    case 10:
+      vL = g1;
+      vR = -g1;
+      break;
+    case 11:
+      vL = 0;
+      vR = -g1;
+      break;
+    case 1:
+      vL = g1;
+      vR = -g1;
+      break;
+    case 1110:
+      vL = -g1;
+      vR = g1;
+      break;
+    case 111:
+      vL = g1;
+      vR = -g1;
+      break;
+    case 1111: 
+    
+      // RFID on 
+      digitalWrite(enablePin, LOW);
+
+      // Stop 
+      servoL.writeMicroseconds(1500);      
+      servoR.writeMicroseconds(1500);
+      delay(250); 
+
+      // Hard Coded Turn
+      servoL.writeMicroseconds(1550);      
+      servoR.writeMicroseconds(1450);
+      delay(100);
+      servoL.writeMicroseconds(1400);      
+      servoR.writeMicroseconds(1400);
+      delay(670); // this is with the robot plugged in. 
+      
+      // enable the RFID Reader
+      digitalWrite(enablePin, LOW);   
+      Serial.println("RFID time");
+
+      // Go forward until we detect the tag
+      while(rfidSerial.available() == 0) 
+      {
+        // servoL.writeMicroseconds(1500);      
+        // servoR.writeMicroseconds(1500);
+      servoL.writeMicroseconds(1600); 
+      servoR.writeMicroseconds(1400); 
+      delay(100);
+
+      } 
+      servoL.writeMicroseconds(1500);      
+      servoR.writeMicroseconds(1500);
+      
+        // detach our servos
+        servoL.detach();                     
+        servoR.detach();
+
+        
+     k=0;
+     digitalWrite(enablePin,HIGH); // disable RFID sensor
+
+     // Loop to determine distance 
+     while(k!=5){  
+      pinMode(pingPin, OUTPUT); 
+      digitalWrite(pingPin, LOW);
+      delayMicroseconds(2);
+      digitalWrite(pingPin, HIGH);
+      delayMicroseconds(5);
+      digitalWrite(pingPin, LOW);
+      pinMode(pingPin, INPUT);
+      duration = pulseIn(pingPin, HIGH);
+      
+      // convert the time into a distance
+      cm = microsecondsToCentimeters(duration);
+      delay(100);
+      k+=1;
+     }
+
+      // Determine Distance
+      if (cm > 30) // if 3-pointer... 
+     {
+         ledVal='m'; 
+          mySerial.write(12);                 // Clear
+          mySerial.write(17);                 // Turn backlight on
+          delay(5);                           // Require  d delay
+          mySerial.print("GOOOOOOLLD");  // First line   
+      }
+      else if (cm >= 20 && cm <= 30) // if a two-pointer...
+      {
+       ledVal='n';
+       mySerial.write(12);                 // Clear    
+       mySerial.write(17);                 // Turn backlight on
+       delay(5);                           // Require  d delay
+       mySerial.print("SILVER");  // First line    
+      }
+      else // if(cm <= 20)
+      {
+        ledVal='o';
+          mySerial.write(12);                 // Clear    
+          mySerial.write(17);                 // Turn backlight on
+          delay(5);                           // Require  d delay
+          mySerial.print("...bronze.");  // First line    
+      }
+
+    // communications time, spam until 0,1,2 is received 
+    k=0;  
+    while(k<1000){
+    Xbee.print(ledVal);
+    Serial.println(ledVal);
+    
+   if(Xbee.available()) { 
+    char incoming = Xbee.read(); // Read character,
+   if(incoming == 0 || incoming == 1 || incoming == 2){
+    
+   if(incoming == 0){ // dance
+    mySerial.write(13); 
+    mySerial.print("00");
+    
+    servoL.attach(13);                         
+    servoR.attach(12);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1700);
+    delay(500);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1300);
+    delay(500);
+    servoL.writeMicroseconds(1300);      
+    servoR.writeMicroseconds(1700);
+    delay(500);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1700);
+    delay(500);
+    servoL.writeMicroseconds(1300);      
+    servoR.writeMicroseconds(1300);
+    delay(1000);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1700);
+    delay(500);   
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1700);
+    delay(500);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1300);
+    delay(500);
+    servoL.writeMicroseconds(1300);      
+    servoR.writeMicroseconds(1700);
+    delay(500);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1700);
+    delay(500);
+    servoL.writeMicroseconds(1300);      
+    servoR.writeMicroseconds(1300);
+    delay(1000);
+    servoL.writeMicroseconds(1700);      
+    servoR.writeMicroseconds(1700);
+    delay(500);                  
+ 
+}
+if(incoming == 1){ // light show
+  mySerial.write(13); 
+  mySerial.print("01");
+  digitalWrite(ledfl, HIGH);
+  delay(200);
+  digitalWrite(ledml, HIGH);
+  delay(200);
+  digitalWrite(ledmr, HIGH);
+  delay(200);
+  digitalWrite(ledfr, HIGH);
+  delay(1000);
+  digitalWrite(ledfl, HIGH); 
+  digitalWrite(ledml, HIGH);
+  digitalWrite(ledmr, HIGH);
+  digitalWrite(ledfr, HIGH);
+  delay(1000); 
+  digitalWrite(ledfl, LOW); 
+  digitalWrite(ledml, LOW);
+  digitalWrite(ledmr, LOW);
+  digitalWrite(ledfr, LOW);
+  delay(1000); 
+  digitalWrite(ledfl, HIGH);
+  delay(300);
+  digitalWrite(ledml, HIGH);
+  delay(300);
+  digitalWrite(ledmr, HIGH);
+  delay(300);
+  digitalWrite(ledfr, HIGH);
+  delay(5000);
+  digitalWrite(ledfl, HIGH); 
+  digitalWrite(ledml, HIGH);
+  digitalWrite(ledmr, HIGH);
+  digitalWrite(ledfr, HIGH);
+  delay(500); 
+  digitalWrite(ledfl, LOW); 
+  digitalWrite(ledml, LOW);
+  digitalWrite(ledmr, LOW);
+  digitalWrite(ledfr, LOW);
+  delay(500); 
+    
+}
+if(incoming == 2){ // National Anthem 
+    mySerial.write(13); 
+    mySerial.print("10");
+  sing(1);}
+}
+   }
+   delay(100);
+   k+=1; 
+
+    }
+   
+delay(50000000); // our program effectively ends because time 
+
+
+break; 
+
+// the end of our case here. (not entirely sure this is the cleanest way to do this...)
+
+        case 0000:
+            vL = 0;
+            vR = 0;
+            break;
+      }
+
+servoL.writeMicroseconds(1500 + vL);      // Steer robot to recenter it over the line
+  servoR.writeMicroseconds(1500 - vR);
+
+
+  delay(25);                                // Delay for 50 milliseconds (1/20 second)
+}
+}
+// }
+
+
+long microsecondsToCentimeters(long microseconds) {
+  // The speed of sound is 340 m/s or 29 microseconds per centimeter.
+  // The ping travels out and back, so to find the distance of the
+  // object we take half of the distance travelled.
+  return microseconds / 29 / 2;
+}
+int song = 0;
+ 
+void sing(int s) {
+  // iterate over the notes of the melody:
+  song = s;
+  if (song == 2) {
+    Serial.println(" 'Underworld Theme'");
+    int size = sizeof(underworld_melody) / sizeof(int);
+    for (int thisNote = 0; thisNote < size; thisNote++) {
+ 
+      // to calculate the note duration, take one second
+      // divided by the note type.
+      //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+      int noteDuration = 1000 / underworld_tempo[thisNote];
+ 
+      buzz(melodyPin, underworld_melody[thisNote], noteDuration);
+ 
+      // to distinguish the notes, set a minimum time between them.
+      // the note's duration + 30% seems to work well:
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+ 
+      // stop the tone playing:
+      buzz(melodyPin, 0, noteDuration);
+ 
+    }
+ 
+  } else {
+ 
+    Serial.println(" 'Mario Theme'");
+    int size = sizeof(melody) / sizeof(int);
+    for (int thisNote = 0; thisNote < size; thisNote++) {
+ 
+      // to calculate the note duration, take one second
+      // divided by the note type.
+      //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+      int noteDuration = 1000 / tempo[thisNote];
+ 
+      buzz(melodyPin, melody[thisNote], noteDuration);
+ 
+      // to distinguish the notes, set a minimum time between them.
+      // the note's duration + 30% seems to work well:
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+ 
+      // stop the tone playing:
+      buzz(melodyPin, 0, noteDuration);
+ 
+    }
+  }
+}
+ 
+void buzz(int targetPin, long frequency, long length) {
+  long delayValue = 1000000 / frequency / 2; // calculate the delay value between transitions
+  //// 1 second's worth of microseconds, divided by the frequency, then split in half since
+  //// there are two phases to each cycle
+  long numCycles = frequency * length / 1000; // calculate the number of cycles for proper timing
+  //// multiply frequency, which is really cycles per second, by the number of seconds to
+  //// get the total number of cycles to produce
+  for (long i = 0; i < numCycles; i++) { // for the calculated length of time...
+    digitalWrite(speakerOut, HIGH); // write the buzzer pin high to push out the diaphram
+    delayMicroseconds(delayValue); // wait for the calculated delay value
+    digitalWrite(speakerOut, LOW); // write the buzzer pin low to pull back the diaphram
+    delayMicroseconds(delayValue); // wait again or the calculated delay value
+  }
+ 
+}
